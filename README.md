@@ -1,3 +1,3 @@
 # Centerpoint-for-n-lines
 
-This should be the live webpage 
+My repository for the project of INFO-F-420.
