@@ -49,32 +49,44 @@ function refresh_all_colors() {
 }
 
 function find_best_h() {
-    intersection_points[0].color = "blue";
     let bestCounter = Infinity; let bestH = null;
 
     for (let i = intersection_points.length-1; i >= 0; i--) {
-        let counters = [0,0];
-        let h_lines = [new Line(q, intersection_points[i], 2), new Line(q, intersection_points[i], 2)];
+        let counters = [0,0,0,0];
+        let h_lines = [new Line(q, intersection_points[i], 2), new Line(q, intersection_points[i], 2),
+                       new Line(q, intersection_points[i], 2), new Line(q, intersection_points[i], 2)];
 
-        // We create a h line shifted every so slightly in the two direction
+        // We create a line shifted ever so slightly in the two direction, and another one that stands in between
+        // See Resources/4possibleConfig.gif
+        // Having 4 lines is necessary when n = 2 and n = 3
         h_lines[0].a.x += EPSILON_ZERO;
         h_lines[0].b.x += EPSILON_ZERO;
 
+        h_lines[1].a.x += EPSILON_ZERO;
         h_lines[1].a.x -= EPSILON_ZERO;
-        h_lines[1].b.x -= EPSILON_ZERO;
+
+        h_lines[2].a.x -= EPSILON_ZERO;
+        h_lines[2].a.x += EPSILON_ZERO;
+
+        h_lines[3].a.x -= EPSILON_ZERO;
+        h_lines[3].b.x -= EPSILON_ZERO;
+
         for (let j = lines.length-1; j >= 0; j--) {
-            const line_to_test = lines[j];
-            for (const h_lines_key in h_lines) {
-                if (are_in_region(q, h_lines[h_lines_key], line_to_test.points)) {
-                    counters[h_lines_key] += 1;
+            const line_to_test = lines[j]
+
+            //Check for the 4 lines and count their region
+            for (let k = 0; k < 4; k++) {
+                if (are_in_region(q, h_lines[k], line_to_test.points)) {
+                    counters[k] += 1;
                 }
             }
 
         }
-        for (const counters_key in counters) {
-            if (counters[counters_key] < bestCounter) {
-                bestCounter = counters[counters_key];
-                bestH = h_lines[counters_key];
+        // Updating the counters with the minimal value and line
+        for (let k = 0; k < 4; k++) {
+            if (counters[k] < bestCounter) {
+                bestCounter = counters[k];
+                bestH = h_lines[k];
             }
         }
     }
