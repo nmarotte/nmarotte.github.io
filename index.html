@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet Nathan Marotte</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="p5js/p5.js"></script>
+  <!--<script src="../p5js/addons/p5.sound.min.js"></script>-->
+  <script src="sketch.js"></script>
+  <script src="DataStructures.js"></script>
+  <script src="Constants.js"></script>
+  <script src="MouseFunctions.js"></script>
+  <script src="MathFunctions.js"></script>
+</head>
+
+<body>
+<div id="textContainer" style="float: left; width: 50%">
+  <h1>The center point for n lines</h1>
+  <h2>Introduction</h2>
+  <p>The problem of finding the center point for n lines is as follows : Considering a set of n lines extending to infinity, a point <b>q</b> and a line <b>h</b>, there always exists one point such that, for any line <b>h</b> cutting the plane in two, we cannot find a half plane (defined by the point <b>q</b>) with less than <b>µ</b> "green lines".</p>
+  <p>We call a green line, a line for which every intersection point is inside the region defined by <b>h</b> and <b>q</b>. Theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> showed that the number of "green lines", <b>µ</b>, or in their paper μL(H) for the set of lines L in the half plane H is always greater or equal than the √(n/3) for n the number of lines.</p>
+  <p>This proved lower bound means that we can always find a point <b>q</b> for which there exist no line <b>h</b> such that the number of "green lines" (or lines which pairwise intersect in that half plane) is smaller than √(n/3).</p>
+
+  <h2>Divind and conquer</h2>
+  <p>The problem can be divided in two parts : first, given the point <b>q</b>, we can look for all the different lines <b>h</b> to extract the line with the minimal <b>µ</b>, and finally, once we have that primitive, we can start to look for all the different points <b>q</b> to extract one point <b>q</b> with maximal µ. For any region of the plane defined by this point <b>q</b> and any line <b>h</b>, theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> proved that µ cannot be less than √(n/3)</p>
+  <p>The two parts are explained in detail on <a href="explanation.html">this page</a> with some magnificent gifs.</p>
+  <h3>Minimizing µ for all the lines <b>h</b> in regards to a given point <b>q</b></h3>
+
+  <h3>Maximizing µ for all the points <b>q</b> with µ-minimizing line <b>h</b></h3>
+
+  <div id="bibliography">
+    <h3>Bibliography</h3>
+    <ol>
+      <li>
+        <div id="Dujmovic and Langerman (2010)">
+        Vida Dujmovic, and Stefan Langerman. <cite><a href="https://arxiv.org/abs/1012.0548">A Center Transversal Theorem for Hyperplanes and Applications to Graph Drawing</a></cite>, (2010)
+        </div>
+      </li>
+    </ol>
+  </div>
+
+
+  <p>This tool allows you to draw lines by clicking twice on the screen, once for each point defining a line segment that will be extended until it intersects with a border </p>
+  <p>Click this button to place the point <b>q</b>, the point that will be used to minimize <b>µL(H)</b></p> <button onclick="canvas.mouseClicked(click_q)">Place Q</button>
+  <p>Click this button to draw a line that will separate the plane in two halves. The half containing <b>q</b> will be called <b>H</b></p> <button onclick="canvas.mouseClicked(click_h)">Draw separator</button>
+  <p>Click this button to find the best hline for the given qpoint</p> <button onclick="find_best_h()">Find best separator</button>
+  <p>The following step is to implement an algorithm to find the best q. But to do that I need a reliable way to enumerate all the position of that point (other than trying points at random anywhere on the canvas). Also during my test, I didn't manage to find any point q such that the h line that minimize the number of green lines shows more than 0 green lines (Except for configurations with less than 4 lines but this is because I need to refine my implementation for finding the minimal set)</p>
+</div>
+<div id="canvasContainer" style="float: right; width: 50%">
+  
+</div>
+</body>
+
+</html>

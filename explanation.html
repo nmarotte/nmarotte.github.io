@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimization and maximization</title>
+</head>
+
+<body>
+<div id="text" style="float: left; width: 80%">
+    <h1>Minimization and maximization</h1>
+    <p>On this webpage, we will discuss on how we can find enumerate all the possible combination/configuration of the point <b>q</b> and the line <b>h</b>.
+        We call a configuration the colour of the plane given the set of lines. That is the point <b>q</b>, the line <b>h</b>, and the colour of each intersection point and each line.</p>
+    <p>A simple, brute-force, way to do this would be to simply fill the plane with <b>x</b> lines/points equally spaced by a small amount of pixels, and then compute the values <b>µ</b>.
+        This approach wasn't chosen because we can easily do better.
+    </p>
+    <p>
+        We can now ask ourselves : What count as two equivalent line/point placement ?
+    </p>
+    <p>
+        The answer is as follows. Since the colour of a line only depends on the intersection points on that line,
+        we notice that two configuration are equivalent if all the lines have the same colour. This means we can enumerate
+        all the configuration by changing the colours of the lines from green to red and vice-versa for each line
+    </p>
+    <p>
+        Since the colour of a line is defined only by its intersection point, and that the colour of an intersection changes
+        once it enters or exits the half plane, we can say that by rotating the line <b>h</b> around the point q, we will enumerate all
+        the possible configuration of the plane.
+    </p>
+    <p>
+        This is explained by the fact that once the line <b>h</b> crosses over an intersection point, that point changes colour and by sweeping the line around the point <b>q</b>, we are guaranteed to hit every intersection.
+        This is illustrated in Figure 1
+    </p>
+
+
+    <p>
+        Knowing that, we can refine our sweeping by simply bouncing the line <b>h</b> around <b>q</b> from intersection to intersection so that each intersection changes region once.
+        However it isn't sufficient to do it in only one order (clockwise for example), since the opposite configuration
+        (swapping every green point for a red point and vice-versa) doesn't necessarily means that the colour of the lines will be swapped the same way. Therefore we need to also do it in counter-clockwise order.
+    </p>
+    <p>
+        In practice however it is easier to do by bouncing the line <b>h</b> around <b>q</b> using epsilons.
+        We consider the line being slightly on the left of both points to simulate a clockwise order, then slightly on the right for the counter-clockwise order, and then starting on
+        the left of <b>q</b> and ending on the right of the intersection and vice versa (this is necessary for at least the case where n is 3).
+        This is demonstrated in the Figure 2 where the epsilons were exaggerated.
+    </p>
+
+    <p>
+        This was for the theoretical part, but given our limited precision program, we uses epsilons with value 10^(-9) and since p5js isn't that much precise with point placing, we are sure that two points
+        (except if they have exactly the same coordinate) will always be far enough so that the epsilon doesn't make the line cross over that close point. <br>
+        To move the line <b>h</b> slightly to the right or the left of the line connecting <b>q</b> and an intersection point,
+        we simply need to add epsilon to the two points defining the line <b>h</b>, and subtract epsilon to get the line on the other side
+    </p>
+
+
+    <h3>Minimizing µ for all the lines <b>h</b> in regards to a given point <b>q</b></h3>
+    Now that we know how to enumerate all the possible configuration, we simply need to try them all and keep track of the line <b>h</b> for which there is a minimal number of green lines.
+    In our implementation we obviously don't just look at the colour of the line in order to determine the value µ but we check if every point of that line is in the same region as <b>q</b> in regards to the line <b>h</b>
+    <h3>Maximizing µ for all the points <b>q</b> with µ-minimizing line <b>h</b></h3>
+</div>
+<div id="Figures" style="float: right; width: 20%">
+    <figure>
+        <img src="Ressources/linecrossing.gif" alt="" width="300">
+        <figcaption>Figure 1 - How crossing a point can affect the colour of the lines</figcaption>
+    </figure>
+    <figure>
+        <img src="Ressources/4possibleConfig.gif" width="300" alt="">
+        <figcaption>Figure 2 - Exaggerated epsilons shows how our algorithm makes two point change regions</figcaption>
+    </figure>
+</div>
+</body>
+</html>
