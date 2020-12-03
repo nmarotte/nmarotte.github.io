@@ -55,16 +55,17 @@
 
     <h3>Minimizing µ for all the lines <b>h</b> in regards to a given point <b>q</b></h3>
     Now that we know how to enumerate all the possible configuration, we simply need to try them all and keep track of the line <b>h</b> for which there is a minimal number of green lines.
-    In our implementation we obviously don't just look at the colour of the line in order to determine the value µ but we check if every point of that line is in the same region as <b>q</b> in regards to the line <b>h</b>
+    In our implementation we obviously don't just look at the colour of the line in order to determine the value µ but we check if every point of that line is in the same region as <b>q</b> in regards to the line <b>h</b>.
+    This can be computed easily by comparing the orientation determinant of the point <b>q</b> and the line <b>h</b>. If they have the same determinant, they are in the same region.
     <h3>Maximizing µ for all the points <b>q</b> with µ-minimizing line <b>h</b></h3>
 </div>
 <div id="Figures" style="float: right; width: 20%">
     <figure>
-        <img src="Ressources/linecrossing.gif" alt="" width="300">
+        <img src="Resources/linecrossing.gif" alt="" width="300">
         <figcaption>Figure 1 - How crossing a point can affect the colour of the lines</figcaption>
     </figure>
     <figure>
-        <img src="Ressources/4possibleConfig.gif" width="300" alt="">
+        <img src="Resources/4possibleConfig.gif" width="300" alt="">
         <figcaption>Figure 2 - Exaggerated epsilons shows how our algorithm makes two point change regions</figcaption>
     </figure>
 </div>
