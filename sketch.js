@@ -35,6 +35,7 @@ function draw() {
     preview_intersection_points?.forEach(point => point.display());
 
 
+    text_on_canvas = lines.length + " lines. µ = " + count_nb_green_lines();
     text(text_on_canvas, 10,10, 50,50);
 }
 

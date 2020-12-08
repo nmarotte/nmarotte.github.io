@@ -20,7 +20,6 @@ function preview_h_line() {
     h = new Line(last_click, get_mouse_point(), 2);
     intersection_points.forEach(point => point.recolor());
     lines.forEach(line => line.recolor());
-    text_on_canvas = lines.length + " lines. µ = " + count_nb_green_lines();
 }
 
 function click_next_line() {
