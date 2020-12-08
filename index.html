@@ -24,15 +24,48 @@
 <div id="textContainer" style="float: left; width: 50%">
   <h1>The center point for n lines</h1>
   <h2>Introduction</h2>
-  <p>The problem of finding the center point for n lines is as follows : Considering a set of n lines extending to infinity, a point <b>q</b> and a line <b>h</b>, there always exists one point such that, for any line <b>h</b> cutting the plane in two, we cannot find a half plane (defined by the point <b>q</b>) with less than <b>µ</b> "green lines".</p>
-  <p>We call a green line, a line for which every intersection point is inside the region defined by <b>h</b> and <b>q</b>. Theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> showed that the number of "green lines", <b>µ</b>, or in their paper μL(H) for the set of lines L in the half plane H is always greater or equal than the √(n/3) for n the number of lines.</p>
-  <p>This proved lower bound means that we can always find a point <b>q</b> for which there exist no line <b>h</b> such that the number of "green lines" (or lines which pairwise intersect in that half plane) is smaller than √(n/3).</p>
+  <p>
+    The problem of finding the center point for n lines is as follows : Considering a set of n lines extending to infinity, a point <b>q</b> and a line <b>h</b>, there always exists one point such that, for any line <b>h</b> cutting the plane in two, we cannot find a half plane (defined by the point <b>q</b>) with less than <b>µ</b> "green lines".
+  </p>
 
-  <h2>Divind and conquer</h2>
-  <p>The problem can be divided in two parts : first, given the point <b>q</b>, we can look for all the different lines <b>h</b> to extract the line with the minimal <b>µ</b>, and finally, once we have that primitive, we can start to look for all the different points <b>q</b> to extract one point <b>q</b> with maximal µ. For any region of the plane defined by this point <b>q</b> and any line <b>h</b>, theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> proved that µ cannot be less than √(n/3)</p>
-  <p>Click <a href="explanation.html">here</a> or on the following button to access the detailed explanation page
+  <p>
+    We call a green line, a line for which every intersection point is inside the region defined by <b>h</b> and <b>q</b>. Theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> showed that the number of "green lines", <b>µ</b>, or in their paper μL(H) for the set of lines L in the half plane H is always greater or equal than the √(n/3) for n the number of lines.
+  </p>
+
+  <p>
+    This proved lower bound means that we can always find a point <b>q</b> for which there exist no line <b>h</b> such that the number of "green lines" (or lines which pairwise intersect in that half plane) is smaller than √(n/3).
+  </p>
+  <h2>Divide and conquer</h2>
+
+  <p>
+    The problem can be divided in two parts : first, given the point <b>q</b>, we can look for all the different lines <b>h</b> to extract the line with the minimal <b>µ</b>, and finally, once we have that primitive, we can start to look for all the different points <b>q</b> to extract one point <b>q</b> with maximal µ. For any region of the plane defined by this point <b>q</b> and any line <b>h</b>, theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> proved that µ cannot be less than √(n/3)
+  </p>
+
+  <p>
+    Click <a href="explanation.html">here</a> or on the following button to access the detailed explanation page
     <button onclick="window.location.href='explanation.html'">Details of the implementation</button>
   </p>
+
+  <h2>The program</h2>
+  <p>On the right of this page you can find a gray area. This is the zone on which you can click to place lines, <b>q</b>, and <b>h</b>.</p>
+  <p>
+    <label for="n_mikado">This first button allows you to drop n lines on the canvas</label><input type="number" id="n_mikado" min="1" value="15"> <button onclick='drop_random_lines(document.getElementById("n_mikado").value);'>Mikado drop</button>
+    Please use with precaution as the program will significantly start to slow down after approximately 100 lines.
+  </p>
+
+  <p>The following buttons allow you to place the point <b>q</b> either manually by clicking once on the canvas after pressing the button, or randomly by simply clicking the random button.</p>
+  <button onclick="canvas.mouseClicked(click_q)">Place Q manually</button>
+  <button onclick="click_q_random()">Place Q at random</button>
+  <p>Click this button to draw the line <b>h</b> that will separate the plane in two halves. The region containing <b>q</b> will be called <b>H</b></p>
+  <button onclick="canvas.mouseClicked(click_h)">Draw separator</button>
+  <p>Click this button to find the best <b>h</b> for the given point <b>q</b></p>
+  <button onclick="find_best_h()">Find best separator</button>
+  <br> <br> <br> <br>
+  <p>Finally, this button allows you the reset the drawing, that is removing all the lines and points</p>
+  <button onclick="setup()">Reset drawing</button>
+
+  <h3>Information about the canvas</h3>
+  <p>Number of lines drawn </p>
 
 
   <div id="bibliography">
@@ -47,11 +80,6 @@
   </div>
 
 
-  <p>This tool allows you to draw lines by clicking twice on the screen, once for each point defining a line segment that will be extended until it intersects with a border </p>
-  <p>Click this button to place the point <b>q</b>, the point that will be used to minimize <b>µL(H)</b></p> <button onclick="canvas.mouseClicked(click_q)">Place Q</button>
-  <p>Click this button to draw a line that will separate the plane in two halves. The half containing <b>q</b> will be called <b>H</b></p> <button onclick="canvas.mouseClicked(click_h)">Draw separator</button>
-  <p>Click this button to find the best hline for the given qpoint</p> <button onclick="find_best_h()">Find best separator</button>
-  <p>The following step is to implement an algorithm to find the best q. But to do that I need a reliable way to enumerate all the position of that point (other than trying points at random anywhere on the canvas). Also during my test, I didn't manage to find any point q such that the h line that minimize the number of green lines shows more than 0 green lines (Except for configurations with less than 4 lines but this is because I need to refine my implementation for finding the minimal set)</p>
 </div>
 <div id="canvasContainer" style="float: right; width: 50%">
   

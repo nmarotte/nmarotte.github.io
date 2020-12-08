@@ -33,11 +33,6 @@ function intersection_with_lower_border(point, slope, line) {
 function get_turn(a, b, c) {
     let determinant =
         a.x * (b.y - c.y) - a.y * (b.x - c.x) + (b.x * c.y - c.x * b.y);
-    if (a === q || b === q || c === q) {
-        if (determinant === 0 ){ // we compared the q point against a line and he belongs in the line, therefore the turn is q_turn;
-            return q_turn;
-        }
-    }
     if (determinant < 0) return -1;
     if (determinant > 0) return 1;
     return 0
@@ -53,4 +48,11 @@ function are_in_region(q, h, points) {
         }
     }
     return true;
+}
+
+function get_random_point(width, height){
+    let x = Math.floor(Math.random()*width);
+    let y = Math.floor(Math.random()*height);
+
+    return new Point(x, y);
 }

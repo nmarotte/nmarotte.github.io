@@ -1,18 +1,19 @@
 class Point {
     constructor(x,y) {
         this.x = x; this.y = y;
+        this.radius = POINT_RADIUS;
 
         this.color = "black";
         this.recolor();
     }
     display() {
         stroke(this.color);fill(this.color);
-        ellipse(this.x, this.y, POINT_RADIUS, POINT_RADIUS);
+        ellipse(this.x, this.y, this.radius, this.radius);
         reset_stroke();
     }
     recolor() {
         if (this === q) { // This is the q point
-            this.color = "black"
+            this.color = "blue"
             return;
         }
 

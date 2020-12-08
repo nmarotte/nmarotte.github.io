@@ -5,10 +5,15 @@ let lines = [];
 
 let last_click = null;
 let q = null;
-let q_turn = -1;
 let h = null;
 
+let text_on_canvas = lines.length + " lines. µ = 0"
+
 function setup() {
+    intersection_points = [];
+    lines = [];
+    last_click = q = h = null;
+
     canvas = createCanvas(document.getElementById("canvasContainer").offsetWidth, windowHeight)
     canvas.parent("canvasContainer");
     canvas.mouseClicked(click_line);
@@ -19,6 +24,7 @@ function setup() {
 
 function draw() {
     background(200);
+    reset_stroke();
 
     q?.display();
     h?.display();
@@ -27,11 +33,19 @@ function draw() {
     intersection_points.forEach(point => point.display());
     preview_line?.display(); // does nothing if preview_line is null
     preview_intersection_points?.forEach(point => point.display());
+
+
+    text(text_on_canvas, 10,10, 50,50);
+}
+
+function windowResized() {
+    resizeCanvas(document.getElementById("canvasContainer").offsetWidth, windowHeight);
 }
 
 function reset_stroke() {
+    fill("black");
     stroke("black")
-    strokeWeight(1)
+    strokeWeight(0)
 }
 
 function add_line(line) {
@@ -90,6 +104,7 @@ function find_best_h() {
             }
         }
     }
+    text_on_canvas = lines.length + " lines. µ = " + bestCounter;
     h = bestH;
     refresh_all_colors();
 
