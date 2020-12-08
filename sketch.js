@@ -36,7 +36,7 @@ function draw() {
 
 
     text_on_canvas = lines.length + " lines. µ = " + count_nb_green_lines();
-    text(text_on_canvas, 10,10, 50,50);
+    //text(text_on_canvas, 10,10, 50,50);
 }
 
 function windowResized() {

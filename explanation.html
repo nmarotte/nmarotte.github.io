@@ -54,9 +54,10 @@
 
 
     <h3>Minimizing µ for all the lines <b>h</b> in regards to a given point <b>q</b></h3>
-    Now that we know how to enumerate all the possible configuration, we simply need to try them all and keep track of the line <b>h</b> for which there is a minimal number of green lines.
-    In our implementation we obviously don't just look at the colour of the line in order to determine the value µ but we check if every point of that line is in the same region as <b>q</b> in regards to the line <b>h</b>.
-    This can be computed easily by comparing the orientation determinant of the point <b>q</b> and the line <b>h</b>. If they have the same determinant, they are in the same region.
+    <p>
+        Now that we know how to enumerate all the possible configuration, we simply need to try them all and keep track of the line <b>h</b> for which there is a minimal number of green lines. In our implementation we obviously don't just look at the colour of the line in order to determine the value µ but we check if every point of that line is in the same region as <b>q</b> in regards to the line <b>h</b>. This can be computed easily by comparing the orientation determinant of the point <b>q</b> and the line <b>h</b>. If they have the same determinant, they are in the same region.<br>
+        However there exist a more clever way to minimize that value. Given two lines and <b>h</b> we notice that if the intersection point is on one side of <b>h</b>, the intersecting lines grow further and further apart until they intersect <b>h</b>. The angle each line forms with <b>h</b> is bigger for the first line than for the second line (or smaller depending on the order you look at them). This is illustrated in Figure 3. <br> This gives us a faster way to look if all the intersections are on one side of <b>h</b> : simply look at the angle of the line against all the others, if you find one angle smaller, it means there exist an intersection point on the other side of <b>h</b>. This can then be generalized such that you only need to find one sequence of lines for which their angle with <b>h</b> always increases. If there is one line somewhere for which the angle decreases for any of the <i>k</i> previous angles, all those lines can be removed from the sequence until we only have an increasing sequence of lines. This is called finding the longest increasing subsequence and is solvable in O( n log n) <a href="index.html#Wiki-lis">[2]</a>
+    </p>
     <h3>Maximizing µ for all the points <b>q</b> with µ-minimizing line <b>h</b></h3>
 </div>
 <div id="Figures" style="float: right; width: 20%">
@@ -67,6 +68,10 @@
     <figure>
         <img src="Resources/4possibleConfig.gif" width="300" alt="">
         <figcaption>Figure 2 - Exaggerated epsilons shows how our algorithm makes two point change regions</figcaption>
+    </figure>
+    <figure>
+        <img src="Resources/anglecolour.gif" width="300" alt="">
+        <figcaption>Figure 3 - How the line converges and diverges until they intersect (Right click open in new tab to enlarge)</figcaption>
     </figure>
 </div>
 </body>
