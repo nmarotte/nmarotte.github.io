@@ -130,6 +130,9 @@ function find_best_q() {
     q = best_q;
     h = best_h;
     refresh_all_colors();
+    q.radius = 8;
+    q.color = "blue";
+    h.color = "blue";
     return best_counter
 }
 
