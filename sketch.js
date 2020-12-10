@@ -113,7 +113,7 @@ function find_best_h() {
 }
 
 function find_best_q() {
-    let counter = 0; let best_counter = -1; let best_q = null;
+    let counter = 0; let best_counter = -1; let best_q = null; let best_h = null;
     for (let i = 0; i < intersection_points.length-2; i++) {
         console.log("calculating", i);
         for (let j = i+1; j < intersection_points.length-1; j++) {
@@ -123,11 +123,13 @@ function find_best_q() {
                 if (counter > best_counter) { // Maximizing µ for q
                     best_counter = counter;
                     best_q = q;
+                    best_h = h;
                 }
             }
         }
     }
     q = best_q;
+    h = best_h;
     refresh_all_colors();
     return best_counter
 }
