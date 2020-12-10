@@ -56,3 +56,8 @@ function get_random_point(width, height){
 
     return new Point(x, y);
 }
+
+
+function get_center_of_triangle(a, b, c) {
+    return new Point((a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3)
+}

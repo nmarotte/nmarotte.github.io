@@ -59,6 +59,7 @@ function add_line(line) {
 }
 
 function refresh_all_colors() {
+    reset_stroke();
     intersection_points.forEach(point => point.recolor());
     lines.forEach(line => line.recolor()) ;
 }
@@ -99,7 +100,7 @@ function find_best_h() {
         }
         // Updating the counters with the minimal value and line
         for (let k = 0; k < 4; k++) {
-            if (counters[k] < bestCounter) {
+            if (counters[k] < bestCounter) { // Minimizing µ for h
                 bestCounter = counters[k];
                 bestH = h_lines[k];
             }
@@ -108,7 +109,27 @@ function find_best_h() {
     text_on_canvas = lines.length + " lines. µ = " + bestCounter;
     h = bestH;
     refresh_all_colors();
+    return bestCounter;
+}
 
+function find_best_q() {
+    let counter = 0; let best_counter = -1; let best_q = null;
+    for (let i = 0; i < intersection_points.length-2; i++) {
+        console.log("calculating", i);
+        for (let j = i+1; j < intersection_points.length-1; j++) {
+            for (let k = j+1; k < intersection_points.length; k++) {
+                q = get_center_of_triangle(intersection_points[i], intersection_points[j], intersection_points[k]);
+                counter = find_best_h();
+                if (counter > best_counter) { // Maximizing µ for q
+                    best_counter = counter;
+                    best_q = q;
+                }
+            }
+        }
+    }
+    q = best_q;
+    refresh_all_colors();
+    return best_counter
 }
 
 function count_nb_green_lines() {
