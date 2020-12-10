@@ -58,8 +58,10 @@
   <button onclick="click_q_random()">Place Q at random</button>
   <p>Click this button to draw the line <b>h</b> that will separate the plane in two halves. The region containing <b>q</b> will be called <b>H</b></p>
   <button onclick="canvas.mouseClicked(click_h)">Draw separator</button>
-  <p>Click this button to find the best <b>h</b> for the given point <b>q</b></p>
-  <button onclick="find_best_h()">Find best separator</button>
+  <p>Click this button to find the best <b>h</b> for the given point <b>q</b> (number of green lines outputted in the console)</p>
+  <button onclick="console.log(find_best_h());">Find best separator</button>
+  <p>Click this button to find the best <b>q</b> in the canvas. This is a brute force method and will be <b>WAY TOO SLOW</b> for more than 15 lines, as this is still experimental (number of green lines outputted in the console)</p>
+  <button onclick="console.log(find_best_q());">Find best point q</button>
   <br> <br> <br> <br>
   <p>Finally, this button allows you the reset the drawing, that is removing all the lines and points</p>
   <button onclick="setup()">Reset drawing</button>

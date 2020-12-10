@@ -115,7 +115,6 @@ function find_best_h() {
 function find_best_q() {
     let counter = 0; let best_counter = -1; let best_q = null; let best_h = null;
     for (let i = 0; i < intersection_points.length-2; i++) {
-        console.log("calculating", i);
         for (let j = i+1; j < intersection_points.length-1; j++) {
             for (let k = j+1; k < intersection_points.length; k++) {
                 q = get_center_of_triangle(intersection_points[i], intersection_points[j], intersection_points[k]);
