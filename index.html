@@ -64,6 +64,8 @@
   <button onclick="console.log(find_best_q());">Find best point q</button>
   <h3>Performances</h3>
   <button onclick="show_intersections=!show_intersections">Toggle drawing of intersections</button>
+  <h3>Hand free</h3>
+  <label for="nb_lines_goal">Input the maximal number of lines you wish to test (Recommended for less than 1mn run : 9 ) </label><input type="number" id="nb_lines_goal" value="9"><button onclick="clicked_walkthrough()">Click this button to see the program in action (Adds 3 lines, then 1 line at a time and find the best q until it has enough lines).</button>
   <br> <br> <br> <br>
   <p>Finally, this button allows you the reset the drawing, that is removing all the lines and points</p>
   <button onclick="setup()">Reset drawing</button>

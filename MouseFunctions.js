@@ -63,6 +63,17 @@ function click_h() {
     }
 }
 
+async function clicked_walkthrough() {
+    setup(); // reset
+    while (lines.length < document.getElementById('nb_lines_goal').value) {
+        drop_random_lines(1);
+        await sleep(500);
+        find_best_q();
+        await sleep(2000);
+        console.log("working")
+    }
+}
+
 function drop_random_lines(n) {
     for (let i = 0; i < n; i++) {
         let a = get_random_point(canvas.width, canvas.height);
@@ -71,4 +82,8 @@ function drop_random_lines(n) {
         add_line(new Line(a,b));
     }
     refresh_all_colors();
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
