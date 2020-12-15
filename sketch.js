@@ -96,12 +96,19 @@ function find_subset() {
     lines.forEach(line => line.color = "red");
     subsequence.forEach(pair => lines[pair[0]].color = "green");
     document.getElementById('muLH').value = subsequence.length;
+    document.getElementById("thval").value = Math.sqrt(lines.length/3);
 
     return subsequence;
 }
 
 function find_best_h() {
     let best_length = Infinity; let best_h = null; let best_subsequence = [];
+    if (q === null) {
+        click_q_random()
+    }
+    if (h === null) {
+        h = new Line(get_random_point(canvas.width, canvas.height), get_random_point(canvas.width, canvas.height), 2);
+    }
 
     for (let i = intersection_points.length-1; i >= 0; i--) {
         let h_lines = [new Line(q, intersection_points[i], 2), new Line(q, intersection_points[i], 2),
@@ -132,12 +139,15 @@ function find_best_h() {
             }
         }
     }
-    h = best_h;
+    if (best_h !== null) {
+        h = best_h;
+    }
 
     // updating information with best one
     lines.forEach(line => line.color = "red");
     best_subsequence.forEach(pair => lines[pair[0]].color = "green");
     document.getElementById('muLH').value = best_subsequence.length;
+    document.getElementById("thval").value = Math.sqrt(lines.length/3);
 
     return best_subsequence;
 }
