@@ -59,6 +59,13 @@
         However there exist a more clever way to minimize that value. Given two lines and <b>h</b> we notice that if the intersection point is on one side of <b>h</b>, the intersecting lines grow further and further apart until they intersect <b>h</b>. The angle each line forms with <b>h</b> is bigger for the first line than for the second line (or smaller depending on the order you look at them). This is illustrated in Figure 3. <br> This gives us a faster way to look if all the intersections are on one side of <b>h</b> : simply look at the angle of the line against all the others, if you find one angle smaller, it means there exist an intersection point on the other side of <b>h</b>. This can then be generalized such that you only need to find one sequence of lines for which their angle with <b>h</b> always increases. If there is one line somewhere for which the angle decreases for any of the <i>k</i> previous angles, all those lines can be removed from the sequence until we only have an increasing sequence of lines. This is called finding the longest increasing subsequence and is solvable in O( n log n) <a href="index.html#Wiki-lis">[2]</a>
     </p>
     <h3>Maximizing µ for all the points <b>q</b> with µ-minimizing line <b>h</b></h3>
+    <p>
+        Now that we have a way to find, given a point <b>q</b>, the value µ, we have to test all the possible positions of the point <b>q</b>. There are multiple ways of achieving that. In this program, we simply test the center of each triangle made by any 3 intersection points. This guarantees one point per triangle in the plane, and this is thought to be all the different positions of the point (since two points inside the triangle should not have a different value µ). This is an obviously brute-force inefficient algorithm but others algorithm are more complex.
+    </p>
+    <h3>Improving the algorithm</h3>
+    <p>
+        To improve this algorithm, one could reduce the number of triangles tested by only looking at non overlapping triangle (As can be seen in Figure 4). This can be done by looking if any point is inside the triangle, if yes we do not minimize µ using the algorithm above and skip to the next one. Further research could also help to reduce the number of triangles to be tested. To my current knowledge, there is no proof that one point per non overlapping triangle is the sufficient to find the maximal value µ. <br>There could also be created a Las Vegas algorithm : Imagine a grid covering the plane, where each square is of length <i>l</i>, we could test one point per intersection of the grid, and reduce <i>l</i> until we find the optimal µ, but this would require to know the exact value of µ and there is currently no known bound tight enough for that, to the best of my knowledge.
+    </p>
 </div>
 <div id="Figures" style="float: right; width: 20%">
     <figure>
@@ -72,6 +79,10 @@
     <figure>
         <img src="Resources/anglecolour.gif" width="300" alt="">
         <figcaption>Figure 3 - How the line converges and diverges until they intersect (Right click open in new tab to enlarge)</figcaption>
+    </figure>
+    <figure>
+        <img src="Resources/all_possible_equivalent_positions_of_q.png" width="300" alt="">
+        <figcaption>Figure 4 - Enumerating all the equivalent positions of the point <b>q</b></figcaption>
     </figure>
 </div>
 </body>
