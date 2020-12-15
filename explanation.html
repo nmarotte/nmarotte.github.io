@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<div id="text" style="float: left; width: 80%">
+<div id="text">
     <p>Click <a href="index.html">here</a> or on the following button to go back to the home page<button onclick="window.location.href='index.html'">Back to the home page</button> </p>
     <h1>Minimization and maximization</h1>
     <p>On this webpage, we will discuss on how we can find enumerate all the possible combination/configuration of the point <b>q</b> and the line <b>h</b>.
@@ -67,23 +67,27 @@
         To improve this algorithm, one could reduce the number of triangles tested by only looking at non overlapping triangle (As can be seen in Figure 4). This can be done by looking if any point is inside the triangle, if yes we do not minimize µ using the algorithm above and skip to the next one. Further research could also help to reduce the number of triangles to be tested. To my current knowledge, there is no proof that one point per non overlapping triangle is the sufficient to find the maximal value µ. <br>There could also be created a Las Vegas algorithm : Imagine a grid covering the plane, where each square is of length <i>l</i>, we could test one point per intersection of the grid, and reduce <i>l</i> until we find the optimal µ, but this would require to know the exact value of µ and there is currently no known bound tight enough for that, to the best of my knowledge.
     </p>
 </div>
-<div id="Figures" style="float: right; width: 20%">
-    <figure>
-        <img src="Resources/linecrossing.gif" alt="" width="300">
-        <figcaption>Figure 1 - How crossing a point can affect the colour of the lines</figcaption>
-    </figure>
-    <figure>
-        <img src="Resources/4possibleConfig.gif" width="300" alt="">
-        <figcaption>Figure 2 - Exaggerated epsilons shows how our algorithm makes two point change regions</figcaption>
-    </figure>
-    <figure>
-        <img src="Resources/anglecolour.gif" width="300" alt="">
-        <figcaption>Figure 3 - How the line converges and diverges until they intersect (Right click open in new tab to enlarge)</figcaption>
-    </figure>
-    <figure>
-        <img src="Resources/all_possible_equivalent_positions_of_q.png" width="300" alt="">
-        <figcaption>Figure 4 - Enumerating all the equivalent positions of the point <b>q</b></figcaption>
-    </figure>
+<div id="Figures">
+    <div id="Figure1" style="float: left">
+        <figure>
+            <img src="Resources/linecrossing.gif" alt="">
+            <figcaption>Figure 1 - How crossing a point can affect the colour of the lines</figcaption>
+        </figure>
+    </div>
+    <div id="Figure2" style="float: left">
+        <figure>
+            <img src="Resources/4possibleConfig.gif" alt="">
+            <figcaption>Figure 2 - Exaggerated epsilons shows how our algorithm makes two point change regions</figcaption>
+        </figure>
+    </div>
+        <figure>
+            <img src="Resources/anglecolour.gif" alt="">
+            <figcaption>Figure 3 - How the line converges and diverges until they intersect</figcaption>
+        </figure>
+        <figure>
+            <img src="Resources/all_possible_equivalent_positions_of_q.png" alt="">
+            <figcaption>Figure 4 - Enumerating all the equivalent positions of the point <b>q</b></figcaption>
+        </figure>
 </div>
 </body>
 </html>
