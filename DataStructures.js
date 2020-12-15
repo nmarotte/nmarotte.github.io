@@ -36,6 +36,7 @@ class Point {
 
 class Line {
     constructor(a, b, thickness=1) {
+        this.index = lines.length
         this.a = a; this.b = b;
         this.slope = calculate_slope(this.a, this.b);
         this.extendLine();

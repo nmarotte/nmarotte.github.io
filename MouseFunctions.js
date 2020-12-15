@@ -18,8 +18,7 @@ function preview_next_line() {
 
 function preview_h_line() {
     h = new Line(last_click, get_mouse_point(), 2);
-    intersection_points.forEach(point => point.recolor());
-    lines.forEach(line => line.recolor());
+    find_subset()
 }
 
 function click_next_line() {

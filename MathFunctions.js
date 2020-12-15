@@ -61,3 +61,36 @@ function get_random_point(width, height){
 function get_center_of_triangle(a, b, c) {
     return new Point((a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3)
 }
+
+function longest_increasing_subsequence(sequence) {
+    let P = new Array(sequence.length);
+    let M = new Array(sequence.length+1);
+
+    let L = 0;
+    for (let i = 0; i < sequence.length; i++) {
+        let lo = 1
+        let hi = L
+        while (lo <= hi) {
+            let mid = Math.ceil((lo+hi)/2);
+            if (sequence[M[mid]] < sequence[i]) {
+                lo = mid+1
+            } else {
+                hi = mid-1
+            }
+        }
+        let newL = lo;
+        P[i] = M[newL-1];
+        M[newL] = i;
+
+        if (newL > L) {
+            L = newL;
+        }
+    }
+    let S = new Array(L);
+    let k = M[L];
+    for (let i = 0; i < L; i++) {
+        S[i] = sequence[k];
+        k = P[k];
+    }
+    return S;
+}

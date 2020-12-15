@@ -29,7 +29,7 @@
   </p>
 
   <p>
-    We call a green line, a line for which every intersection point is inside the region defined by <b>h</b> and <b>q</b>. Theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> showed that the number of "green lines", <b>µ</b>, or in their paper μL(H) for the set of lines L in the half plane H is always greater or equal than the √(n/3) for n the number of lines.
+    Considering n lines and starting with 0 green lines (The subset L(H) is empty). For each line, we will color it green (add it to the subset L(H)) if and only if all its intersection with all the green lines are inside the region H. Theorem 7 of <a href="#Dujmovic and Langerman (2010)">[1]</a> showed that the number of "green lines", <b>µ</b>, or in their paper μL(H) for the set of lines L in the half plane H is always greater or equal than the √(n/3) for n the number of lines.
   </p>
 
   <p>
@@ -59,14 +59,19 @@
   <p>Click this button to draw the line <b>h</b> that will separate the plane in two halves. The region containing <b>q</b> will be called <b>H</b></p>
   <button onclick="canvas.mouseClicked(click_h)">Draw separator</button>
   <p>Click this button to find the best <b>h</b> for the given point <b>q</b> (number of green lines outputted in the console)</p>
-  <button onclick="console.log(find_best_h());">Find best separator</button>
+  <button onclick="find_best_h();">Find best separator</button>
   <p>Click this button to find the best <b>q</b> in the canvas. This is a brute force method and will be <b>WAY TOO SLOW</b> for more than 15 lines, as this is still experimental (number of green lines outputted in the console)</p>
   <button onclick="console.log(find_best_q());">Find best point q</button>
+  <h3>Performances</h3>
+  <button onclick="show_intersections=!show_intersections">Toggle drawing of intersections</button>
   <br> <br> <br> <br>
   <p>Finally, this button allows you the reset the drawing, that is removing all the lines and points</p>
   <button onclick="setup()">Reset drawing</button>
   <p>This button saves the current canvas on the computer</p>
   <button onclick="saveCanvas(canvas, 'canvas', 'jpg');">Save canvas</button>
+  <h3>Information about the canvas</h3>
+  <label for="nb_lines">Number of lines currently on the canvas</label><input type="number" id="nb_lines" disabled value="0">
+  <label for="muLH">Number of green lines (µL(H))</label><input type="number" id="muLH" disabled value="0">
 
   <h3>Author of the webpage (html and javascript code) : Nathan Marotte</h3>
 
