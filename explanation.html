@@ -60,7 +60,7 @@
     </p>
     <h3>Maximizing µ for all the points <b>q</b> with µ-minimizing line <b>h</b></h3>
     <p>
-        Now that we have a way to find, given a point <b>q</b>, the value µ, we have to test all the possible positions of the point <b>q</b>. There are multiple ways of achieving that. In this program, we simply test the center of each triangle made by any 3 intersection points. This guarantees one point per triangle in the plane, and this is thought to be all the different positions of the point (since two points inside the triangle should not have a different value µ). This is an obviously brute-force inefficient algorithm but others algorithm are more complex. This maximization alone is the bottleneck of this program since it runs in O(i^3) where i is the number of intersections. This means O(n^5) where n is the number of lines since we have n*(n-1)/2 intersections for n lines.
+        Now that we have a way to find, given a point <b>q</b>, the value µ, we have to test all the possible positions of the point <b>q</b>. There are multiple ways of achieving that. In this program, we simply test the center of each triangle made by any 3 intersection points. This guarantees one point per triangle in the plane, and this is thought to be all the different positions of the point (since two points inside the triangle should not have a different value µ). This is an obviously brute-force inefficient algorithm but others algorithm are more complex. This maximization alone is the bottleneck of this program since it runs in O(i^3) where i is the number of intersections. This means O(n^2^3) = O(n^6) where n is the number of lines since we have n*(n-1)/2 intersections for n lines.
     </p>
     <h3>Improving the algorithm</h3>
     <p>
